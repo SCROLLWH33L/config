@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Get repository location
+SOURCE=${BASH_SOURCE[0]}
+while [ -L "$SOURCE" ]; do
+    DIR=$( cd -P "$( dirname "$SOURCE" )" > /dev/null 2>&1 && pwd)
+    SOURCE=$(readlink "$SOURCE")
+    [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
+done
+DIR=$( cd -P "$( dirname "$SOURCE" )" > /dev/null 2>&1 && pwd)
+
+# Push contents of repository to home directory
+rsync --human-readable --recursive --verbose --exclude=".git" --exclude="list.txt" --exclude="load-configs" "$DIR/" ~

@@ -1,0 +1,4 @@
+.config/i3/config
+.config/nvim/init.vim
+.config/tmux/tmux.conf
+.vimrc
